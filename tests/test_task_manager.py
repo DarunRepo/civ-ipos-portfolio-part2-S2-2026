@@ -62,7 +62,8 @@ class TestTaskManager(unittest.TestCase):
 
     def test_add_task_with_slash_due_date(self):
         """
-        Test that slash-separated dates are accepted and converted to dash-separated dates.
+        Test that slash-separated dates are accepted and converted to dash-separated
+        dates.
         """
         result = add_task(self.tasks, "Test Task", "Description", "21/12/1974")
         self.assertTrue(result)

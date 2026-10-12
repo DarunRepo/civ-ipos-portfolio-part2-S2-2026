@@ -29,7 +29,7 @@ def add_task(tasks, title, description, due_date):
 
     # Validate due date format, accepting dates with either hyphens or slashes
     try:
-        if  len(due_date) != 10 or due_date[2] not in "-/" or due_date[5] != due_date[2]:
+        if len(due_date) != 10 or due_date[2] not in "-/" or due_date[5] != due_date[2]:
             raise ValueError
         parsed_date = parser.parse(due_date, dayfirst=True)
         due_date = parsed_date.strftime("%d-%m-%Y")
