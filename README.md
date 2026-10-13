@@ -16,6 +16,18 @@ This activity requires you to:
 
 ---
 
+## **New Task List Display**
+
+- The Task Manager now uses the tabulate library to display tasks in a formatted table.
+- When users select List Tasks from the main menu, the application displays four columns:
+  - Title
+  - Description
+  - Due Date
+  - Status
+- tabulate adjusts the column widths to fit the task information, making the list much easier to read.
+
+---
+
 ## **Workflow**
 
 ---

@@ -1,8 +1,10 @@
 import unittest
-from src.task_manager import add_task, delete_task, filter_tasks_by_status
+from src.task_manager import add_task, delete_task, filter_tasks_by_status, list_tasks
 from src.file_handler import save_tasks, load_tasks
 from src.task import Task
 import os
+from io import StringIO
+from unittest.mock import patch
 
 TEST_FILE = "test_tasks.bin"
 
@@ -69,6 +71,18 @@ class TestTaskManager(unittest.TestCase):
         result = delete_task(self.tasks, "Task to Delete")
         self.assertTrue(result)
         self.assertEqual(len(self.tasks), 0)
+
+    def test_list_tasks_displays_table_headings(self):
+        """
+        Test that the task list displays column headings.
+        """
+        add_task(self.tasks, "Test Task", "Description", "21-12-2026")
+        with patch("sys.stdout", new_callable=StringIO) as output:
+            list_tasks(self.tasks)
+        self.assertIn("Title", output.getvalue())
+        self.assertIn("Description", output.getvalue())
+        self.assertIn("Due Date", output.getvalue())
+        self.assertIn("Status", output.getvalue())
 
     def test_filter_tasks_by_status(self):
         """

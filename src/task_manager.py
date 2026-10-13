@@ -1,6 +1,7 @@
 from src.task import Task
 from src.file_handler import save_tasks
 from datetime import datetime
+from tabulate import tabulate
 
 
 def add_task(tasks, title, description, due_date):
@@ -89,11 +90,11 @@ def list_tasks(tasks, status=None):
     if not filtered:
         print("No tasks found.")
         return
+    headers = ["Title", "Description", "Due Date", "Status"]
+    rows = []
     for task in filtered:
-        print(
-            f"{task.title} | {task.description} | "
-            f"Due: {task.due_date} | Status: {task.status}"
-        )
+        rows.append([task.title, task.description, task.due_date, task.status])
+    print(tabulate(rows, headers=headers))
 
 
 def filter_tasks_by_status(tasks, status):
