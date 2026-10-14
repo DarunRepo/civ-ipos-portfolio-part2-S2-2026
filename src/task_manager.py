@@ -1,6 +1,6 @@
 from src.task import Task
 from src.file_handler import save_tasks
-from datetime import datetime
+from dateutil import parser
 
 
 def add_task(tasks, title, description, due_date):
@@ -27,11 +27,14 @@ def add_task(tasks, title, description, due_date):
         print("Error: A task with this title already exists.")
         return False
 
-    # Validate due date format
+    # Validate due date format, accepting dates with either hyphens or slashes
     try:
-        datetime.strptime(due_date, "%d-%m-%Y")
+        if len(due_date) != 10 or due_date[2] not in "-/" or due_date[5] != due_date[2]:
+            raise ValueError
+        parsed_date = parser.parse(due_date, dayfirst=True)
+        due_date = parsed_date.strftime("%d-%m-%Y")
     except ValueError:
-        print("Error: Invalid date format. Use DD-MM-YYYY.")
+        print("Error: Invalid date. Use DD-MM-YYYY or DD/MM/YYYY.")
         return False
 
     tasks.append(Task(title, description, due_date))

@@ -16,6 +16,15 @@ This activity requires you to:
 
 ---
 
+## **New Due Date Format**
+
+- The Task Manager now accepts due dates in either DD-MM-YYYY or DD/MM/YYYY format.
+- For example, both 21-12-1974 and 21/12/1974 are valid inputs.
+- The application uses the python-dateutil library to parse dates and converts accepted dates to DD-MM-YYYY format before saving them.
+- Invalid calendar dates are rejected with an error message.
+
+---
+
 ## **Workflow**
 
 ---
