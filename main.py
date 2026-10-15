@@ -15,7 +15,7 @@ def main():
         if choice == "1":
             title = input("Title: ")
             description = input("Description: ")
-            due_date = input("Due Date (DD-MM-YYYY): ")
+            due_date = input("Due Date (DD-MM-YYYY or DD/MM/YYYY): ")
             add_task(tasks, title, description, due_date)
         elif choice == "2":
             title = input("Title of the task to delete: ")

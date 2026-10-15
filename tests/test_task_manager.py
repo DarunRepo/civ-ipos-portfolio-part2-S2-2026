@@ -62,6 +62,25 @@ class TestTaskManager(unittest.TestCase):
         result = add_task(self.tasks, "Test Task", "Description", "2024-12-01")
         self.assertFalse(result)
 
+    def test_add_task_with_slash_due_date(self):
+        """
+        Test that slash-separated dates are accepted and converted to dash-separated
+        dates.
+        """
+        result = add_task(self.tasks, "Test Task", "Description", "21/12/1974")
+        self.assertTrue(result)
+        self.assertEqual(len(self.tasks), 1)
+        self.assertEqual(self.tasks[0].due_date, "21-12-1974")
+
+    def test_add_task_with_invalid_slash_due_date(self):
+        """
+        Test adding a task with an invalid slash-separated due date format.
+        Verify that the function handles invalid input gracefully and returns False.
+        """
+        result = add_task(self.tasks, "Test Task", "Description", "35/10/2026")
+        self.assertFalse(result)
+        self.assertEqual(len(self.tasks), 0)
+
     def test_delete_task(self):
         """
         Test deleting a task by its title.
